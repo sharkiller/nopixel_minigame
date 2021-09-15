@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>NoPixel Yacht Minigame</title>
+    <meta name="description" content="Solve the NoPixel Yacht Minigame.">
+    <link rel="canonical" href="https://sharkiller.ddns.net/nopixel_minigame/yacht/" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.4">
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="32x32" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="minigame.css?v=202120703-7">
+    <script defer src="minigame.js?v=202120703-7"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52394643-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-52394643-1');
+    </script>
+</head>
+<body>
+
+<div class="minigame">
+    <form id="yacht" onsubmit="this.preventDefault()">
+        <div class="step"><span>Step 1:</span> Found the 12 envelopes.</div>
+        <div class="envelopes">
+            <div class="envelope steam"> <!-- Engine #1 -->
+                <select class="fa icon">
+                    <option class="fa" selected>&nbsp;</option>
+                    <option class="fa">&#xf057;</option>
+                    <option class="fa">&#xf28b;</option>
+                    <option class="fa">&#xf056;</option>
+                    <option class="fa">&#xf055;</option>
+                    <option class="fa">&#xf146;</option>
+                    <option class="fa">&#xf0fe;</option>
+                    <option class="fa">&#xf1e1;</option>
+                    <option class="fa">&#xf137;</option>
+                    <option class="fa">&#xf138;</option>
+                    <option class="fa">&#xf139;</option>
+                    <option class="fa">&#xf13a;</option>
+                    <option class="fa">&#xf191;</option>
+                    <option class="fa">&#xf152;</option>
+                    <option class="fa">&#xf151;</option>
+                    <option class="fa">&#xf150;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf75f;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf525;</option>
+                </select>
+            </div>
+            <div class="envelope add steam"> <!-- Steam #2 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf75f;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf528;</option>
+                </select>
+            </div>
+            <div class="envelope add steam"> <!-- Steam #3 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf75f;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf527;</option>
+                </select>
+            </div>
+            <div class="envelope add steam"> <!-- Steam #4 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf75f;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf524;</option>
+                </select>
+            </div>
+            <div class="envelope add phone"> <!-- Phone #1 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf095;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf525;</option>
+                </select>
+            </div>
+            <div class="envelope add phone"> <!-- Phone #2 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf095;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf528;</option>
+                </select>
+            </div>
+            <div class="envelope add laptop1"> <!-- Laptop #1 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf5fc;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf062;</option>
+                </select>
+            </div>
+            <div class="envelope add laptop2"> <!-- Laptop #2 -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf5fc;</option>
+                </select>
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf063;</option>
+                </select>
+            </div>
+            <div class="envelope add cd"> <!-- Compact Disc / Insert Disc-->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf51f;</option>
+                </select>
+            </div>
+            <div class="envelope add clock"> <!-- Clock / Adjust Time -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf017;</option>
+                </select>
+            </div>
+            <div class="envelope add horse"> <!-- Horse / Rotate Horse -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf7ab;</option>
+                </select>
+            </div>
+            <div class="envelope add music"> <!-- Music -->
+                <select class="fa" disabled>
+                    <option class="fa" selected>&#xf001;</option>
+                </select>
+            </div>
+        </div>
+        <div class="step"><span>Step 2:</span> Solve the screens minigame</div>
+        <div class="groups">
+            <div class="group">
+                <div><span class="fa">&#xf35b;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf35a;</span><input type="text" value="" data-group="1" data-type="right" pattern="[0123]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf358;</span><input type="text" value="" data-group="1" data-type="down" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <div><span class="fa">&#xf359;</span><div class="fixed">0</div></div>
+                <div class="position">1 </div>
+            </div>
+            <div class="group">
+                <div><span class="fa">&#xf35b;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf35a;</span><input type="text" value="" data-group="2" data-type="right" pattern="[012]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf358;</span><input type="text" value="" data-group="2" data-type="down" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf359;</span><input type="text" value="" data-group="2" data-type="left" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <div class="position">2 </div>
+            </div>
+            <div class="group">
+                <div><span class="fa">&#xf35b;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf35a;</span><input type="text" value="" data-group="3" data-type="right" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf358;</span><input type="text" value="" data-group="3" data-type="down" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf359;</span><input type="text" value="" data-group="3" data-type="left" pattern="[012]" maxlength="1" autocomplete="off"></label>
+                <div class="position">3 </div>
+            </div>
+            <div class="group">
+                <div><span class="fa">&#xf35b;</span><div class="fixed">0</div></div>
+                <div><span class="fa">&#xf35a;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf358;</span><input type="text" value="" data-group="4" data-type="down" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf359;</span><input type="text" value="" data-group="4" data-type="left" pattern="[0123]" maxlength="1" autocomplete="off"></label>
+                <div class="position">4 </div>
+            </div>
+            <div class="group">
+                <label><span class="fa">&#xf35b;</span><input type="text" value="" data-group="5" data-type="up" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf35a;</span><input type="text" value="" data-group="5" data-type="right" pattern="[0123]" maxlength="1" autocomplete="off"></label>
+                <div><span class="fa">&#xf358;</span><div class="fixed">0</div></div>
+                <div><span class="fa">&#xf359;</span><div class="fixed">0</div></div>
+                <div class="position">5 </div>
+            </div>
+            <div class="group">
+                <label><span class="fa">&#xf35b;</span><input type="text" value="" data-group="6" data-type="up" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf35a;</span><input type="text" value="" data-group="6" data-type="right" pattern="[012]" maxlength="1" autocomplete="off"></label>
+                <div><span class="fa">&#xf358;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf359;</span><input type="text" value="" data-group="6" data-type="left" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <div class="position">6 </div>
+            </div>
+            <div class="group">
+                <label><span class="fa">&#xf35b;</span><input type="text" value="" data-group="7" data-type="up" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <label><span class="fa">&#xf35a;</span><input type="text" value="" data-group="7" data-type="right" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <div><span class="fa">&#xf358;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf359;</span><input type="text" value="" data-group="7" data-type="left" pattern="[012]" maxlength="1" autocomplete="off"></label>
+                <div class="position">7 </div>
+            </div>
+            <div class="group">
+                <label><span class="fa">&#xf35b;</span><input type="text" value="" data-group="8" data-type="up" pattern="[01]" maxlength="1" autocomplete="off"></label>
+                <div><span class="fa">&#xf35a;</span><div class="fixed">0</div></div>
+                <div><span class="fa">&#xf358;</span><div class="fixed">0</div></div>
+                <label><span class="fa">&#xf359;</span><input type="text" value="" data-group="8" data-type="left" pattern="[0123]" maxlength="1" autocomplete="off"></label>
+                <div class="position">8 </div>
+            </div>
+        </div>
+        <div class="solution">CORRECT ORDER: <div class="solution_order">?</div></div>
+
+        <div class="step"><span>Step 3:</span> Open envelope and do minigames in order</div>
+        <div class="buttons"><button id="generate_order" type="button">Generate final order</button></div>
+        <div class="solution">FINAL MINIGAMES ORDER:
+            <div class="minigames_order">?</div>
+            <div class="minigames_verbose"></div>
+        </div>
+
+        <div class="step"><span>Step 4:</span> Profit (?)</div>
+        <div class="buttons"><button type="reset">RESET SELECTORS</button></div>
+    </form>
+</div>
+<div class="credits">
+    See also:<br>
+    <a href="../lockpicks/">Lockpicks Minigame</a><br>
+    <a href="../hackingdevice/">Hacking Device Minigame</a><br>
+    <a href="../fleeca/">Fleeca Minigame</a><br>
+    <a href="../thermite/">Thermite Minigame</a><br>
+    <a href="../vault/">Vault Minigame</a><br>
+    <a href="../lowervault/">Lower Vault Minigame</a><br>
+    <a href="../vaultcodes/">Vault Codes Minigame</a><br>
+    <b>>Yacht Helper<</b><br><br>
+    Made by <b>Sharkiller</b><br><br>Whisper me on Twitch <b>@Sh4rkill3r</b> or Discord <b>Sharkiller#5403</b>
+</div>
+</body>
+</html>

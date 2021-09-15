@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>NoPixel Thermite Minigame</title>
+    <meta name="description" content="Play the NoPixel Thermite Minigame to test your memory.">
+    <link rel="canonical" href="https://sharkiller.ddns.net/nopixel_minigame/thermite/" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.4">
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="32x32" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="minigame.css?v=20210812">
+    <script defer src="minigame.js?v=20210812"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52394643-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-52394643-1');
+    </script>
+</head>
+<body>
+    <div class="streaks">
+        STREAK: <span class="streak">0</span> <span class="fa">&#xf21b;</span> MAX STREAK: <span class="max_streak">0</span>
+        <br>TIME: <span class="time">0.000</span> <span class="fa">&#xf2f2;</span> BEST TIME: <span class="best_time">0.000</span>
+    </div>
+    <div class="options">
+        <div class="option speed">
+            <label for="speed">Speed:</label>
+            <input id="speed" type="range" value="6" min="4" max="30" autocomplete="off">
+            <div class="speed_value">6s</div>
+        </div>
+        <div class="option grid">
+            <label for="grid">Grid:</label>
+            <input id="grid" type="range" value="7" min="5" max="10" autocomplete="off">
+            <div class="grid_value">7x7</div>
+        </div>
+    </div>
+    <div class="minigame">
+        <div class="splash"><div class="fa hacker">&#xf21b;</div>Remote Sequencing Required</div>
+        <div class="groups hidden"></div>
+    </div>
+    <div class="restart"><button class="btn_again">AGAIN!</button></div>
+    <div class="credits">
+        See also:<br>
+        <a href="../lockpicks/">Lockpicks Minigame</a><br>
+        <a href="../hackingdevice/">Hacking Device Minigame</a><br>
+        <a href="../fleeca/">Fleeca Minigame</a><br>
+        <b>>Thermite Minigame<</b><br>
+        <a href="../vault/">Vault Minigame</a><br>
+        <a href="../lowervault/">Lower Vault Minigame</a><br>
+        <a href="../vaultcodes/">Vault Codes Minigame</a><br>
+        <a href="../yacht/">Yacht Helper</a><br><br>
+        Made by <b>Sharkiller</b><br><br>Whisper me on Twitch <b>@Sh4rkill3r</b> or Discord <b>Sharkiller#5403</b>
+    </div>
+</body>
+</html>
