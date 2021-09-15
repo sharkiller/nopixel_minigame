@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>NoPixel Lower Vault Minigame</title>
+    <meta name="description" content="Play the NoPixel Lower Vault Bank Hacking Minigame to test your speed and get the maximum streak.">
+    <link rel="canonical" href="https://sharkiller.ddns.net/nopixel_minigame/lowervault/" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.4">
+    <link rel="icon" type="image/png" href="favicon.ico" sizes="32x32" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="minigame.css?v=20210618">
+    <script defer src="minigame.js?v=20210618"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52394643-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-52394643-1');
+    </script>
+</head>
+<body class="practice">
+<div class="streaks">STREAK: <span class="streak">0</span> | MAX STREAK: <span class="max_streak">0</span></div>
+<div class="options">
+    <div class="option speed">
+        <label for="speed">Speed:</label>
+        <input id="speed" type="range" value="6" min="3" max="15" autocomplete="off">
+        <div class="speed_value">6s</div>
+    </div>
+    <div class="option game_mode">
+        <span>Mode:</span>
+        <button class="button active" data-mode="practice">Practice</button>
+        <button class="button" data-mode="vault">Secret Vault</button>
+    </div>
+    <div class="option audio">
+        <span class="fa">&#xf028;</span>
+    </div>
+</div>
+<div class="minigame">
+    <div class="splash">
+        <div class="fa hacker">&#xf21b;</div>
+        <span class="message">Vault Hacking Minigame</span>
+        <button class="btn_again">PLAY NOW</button>
+        <audio preload="auto">
+            <source src="audio_splash.ogg" type="audio/ogg">
+        </audio>
+    </div>
+    <div class="groups hidden">
+        <div class="group">
+            <div class="real_number">&nbsp;</div>
+            <div class="shape hidden"></div>
+            <div class="text hidden">&nbsp;</div>
+            <div class="number hidden">&nbsp;</div>
+        </div>
+        <div class="group">
+            <div class="real_number">&nbsp;</div>
+            <div class="shape hidden"></div>
+            <div class="text hidden">&nbsp;</div>
+            <div class="number hidden">&nbsp;</div>
+        </div>
+        <div class="group">
+            <div class="real_number">&nbsp;</div>
+            <div class="shape hidden"></div>
+            <div class="text hidden">&nbsp;</div>
+            <div class="number hidden">&nbsp;</div>
+        </div>
+        <div class="group">
+            <div class="real_number">&nbsp;</div>
+            <div class="shape hidden"></div>
+            <div class="text hidden">&nbsp;</div>
+            <div class="number hidden">&nbsp;</div>
+        </div>
+        <div class="group">
+            <div class="real_number">&nbsp;</div>
+            <div class="shape hidden"></div>
+            <div class="text hidden">&nbsp;</div>
+            <div class="number hidden">&nbsp;</div>
+        </div>
+        <div class="group">
+            <div class="real_number">&nbsp;</div>
+            <div class="shape hidden"></div>
+            <div class="text hidden">&nbsp;</div>
+            <div class="number hidden">&nbsp;</div>
+        </div>
+    </div>
+    <div class="inputs hidden">
+        <div class="timer">
+            <div class="progress active"><div class="progress-bar timer-progress"></div></div>
+            <audio preload="auto" loop>
+                <source src="audio_timer.ogg" type="audio/ogg">
+            </audio>
+        </div>
+        <div class="question">
+            ENTER THE <span class="quiz1">$nbsp;</span> AND <span class="quiz2">$nbsp;</span>
+        </div>
+        <div class="answer">
+            <div class="answer-wrapper">
+                <label for="answer">Answer</label>
+                <input id="answer" type="text" autocomplete="off" placeholder="blue square" autofocus>
+            </div>
+            <button class="btn_again">AGAIN!</button>
+        </div>
+        <div class="solution hidden">
+            Real numbers: <span class="real_numbers">&nbsp;</span><br>
+            Solution: <span class="solution_text">&nbsp;</span>
+        </div>
+    </div>
+</div>
+<div class="credits">
+    See also:<br>
+    <a href="../lockpicks/">Lockpicks Minigame</a><br>
+    <a href="../hackingdevice/">Hacking Device Minigame</a><br>
+    <a href="../fleeca/">Fleeca Minigame</a><br>
+    <a href="../thermite/">Thermite Minigame</a><br>
+    <a href="../vault/">Vault Minigame</a><br>
+    <b>>Lower Vault Minigame<</b><br>
+    <a href="../vaultcodes/">Vault Codes Minigame</a><br>
+    <a href="../yacht/">Yacht Helper</a><br><br>
+    Made by <b>Sharkiller</b><br><br>Whisper me on Twitch <b>@Sh4rkill3r</b> or Discord <b>Sharkiller#5403</b>
+</div>
+</body>
+</html>
