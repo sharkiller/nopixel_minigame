@@ -16,19 +16,27 @@ class NoPixel_Fleeca{
     }
     
     shapes = ['square', 'rectangle', 'circle', 'triangle'];
+    inner_shapes = ['square', 'square2', 'rectangle', 'rectangle2', 'circle', 'circle2', 'triangle'];
     colors = ['blue', 'green', 'red', 'orange', 'yellow', 'purple', 'black', 'white'];
     types = [
+        {'type': 'background_color','text': 'BACKGROUND COLOR'},
+        {'type': 'number_color','text': 'NUMBER COLOR'},
+        // Shape
         {'type': 'shape','text': 'SHAPE'},
         {'type': 'shape_color','text': 'SHAPE COLOR'},
+        // Inner shape
+        {'type': 'inner_shape','text': 'INNER SHAPE'},
+        {'type': 'inner_shape_color','text': 'INNER SHAPE COLOR'},
+        // Upper text - Color
         {'type': 'text_color','text': 'TEXT COLOR'},
+        {'type': 'text_color_bg_color','text': 'COLOR TEXT BACKGROUND COLOR'},
+        // Bottom text - Shape
         {'type': 'text_shape','text': 'SHAPE TEXT'},
-        {'type': 'text_bg_color','text': 'TEXT BACKGROUND COLOR'},
-        {'type': 'background_color','text': 'BACKGROUND COLOR'},
-        {'type': 'number_color','text': 'NUMBER COLOR'}
+        {'type': 'text_shape_bg_color','text': 'SHAPE TEXT BACKGROUND COLOR'}
     ];
 
     create(){
-        let real_numbers, impostor_numbers, minigame, group, background_colors, types, quiz_numbers;
+        let real_numbers, impostor_numbers, minigame, group, background_colors, text_colors, types, quiz_numbers;
 
         real_numbers = this.range(1, 6);
         this.shuffle(real_numbers);
@@ -45,20 +53,29 @@ class NoPixel_Fleeca{
         for(let i = 0; i < 6; i++){
             group = [];
 
-            background_colors = this.colors;
+            background_colors = [...this.colors];
             this.shuffle(background_colors);
+
+            text_colors = [...this.colors];
+            this.shuffle(text_colors);
 
             group['real_number'] = real_numbers[i];
             group['impostor_number'] = impostor_numbers[i];
 
-            group['shape'] = this.shapes[this.random(0, this.shapes.length)];
             group['background_color'] = background_colors[0];
-            group['shape_color'] = background_colors[1];
-            group['text_bg_color'] = this.colors[this.random(0, this.colors.length)];
             group['number_color'] = this.colors[this.random(0, this.colors.length)];
 
-            group['text_shape'] = this.shapes[this.random(0, this.shapes.length)];
+            group['shape'] = this.shapes[this.random(0, this.shapes.length)];
+            group['shape_color'] = background_colors[1];
+
+            group['inner_shape'] = this.inner_shapes[this.random(0, this.inner_shapes.length)];
+            group['inner_shape_color'] = background_colors[2];
+
             group['text_color'] = this.colors[this.random(0, this.colors.length)];
+            group['text_color_bg_color'] = text_colors[0];
+
+            group['text_shape'] = this.shapes[this.random(0, this.shapes.length)];
+            group['text_shape_bg_color'] = text_colors[1];
 
             minigame['groups'].push(group);
         }
@@ -66,23 +83,27 @@ class NoPixel_Fleeca{
         quiz_numbers = this.range(0, 5);
         this.shuffle(quiz_numbers);
 
-        types = this.types;
+        types = [...this.types];
         this.shuffle(types);
+
+        let solution1 = minigame['groups'][quiz_numbers[0]][types[0]['type']];
+        let solution2 = minigame['groups'][quiz_numbers[1]][types[1]['type']];
+        solution1 = solution1.replace(/\d/,'');
+        solution2 = solution2.replace(/\d/,'');
 
         minigame['quiz1'] = {
             'pos': quiz_numbers[0],
             'type': types[0],
-            'solution': minigame['groups'][quiz_numbers[0]][types[0]['type']]
+            'solution': solution1
         };
 
         minigame['quiz2'] = {
             'pos': quiz_numbers[1],
             'type': types[1],
-            'solution': minigame['groups'][quiz_numbers[1]][types[1]['type']]
+            'solution': solution2
         };
 
-        minigame['solution'] = minigame['groups'][quiz_numbers[0]][types[0]['type']] +
-            ' ' + minigame['groups'][quiz_numbers[1]][types[1]['type']];
+        minigame['solution'] = solution1 +' '+ solution2;
 
         return minigame;
     }
@@ -93,6 +114,7 @@ let mode = 'practice';
 let minigame = new NoPixel_Fleeca();
 let streak = 0;
 let max_streak = 0;
+let game_started = false;
 
 // Get max streak from cookie
 const regex = /max-streak_lowervault=([\d]+)/g;
@@ -153,7 +175,9 @@ document.querySelector('.answer .btn_again').addEventListener('click', function(
 
 // Process answer
 document.querySelector('#answer').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && document.querySelector('.solution').offsetHeight === 0) {
+    if (e.key === 'Enter' && game_started === true) {
+        game_started = false;
+
         clearTimeout(timer_game);
         audio_timer.pause();
 
@@ -191,12 +215,23 @@ document.querySelector('#answer').addEventListener('keydown', function(e) {
                 document.querySelector('.splash .message').innerText = "The system didn't accept your answer";
             }
         }
+    }if(game_started === true){
+        if( document.querySelector('#option2').checked === true )
+            invertText();
     }
 });
 
+let invertText = () => {
+    document.querySelectorAll('.group').forEach(el => {
+        if( Math.round(Math.random()) === 1 || Math.round(Math.random()) === 1 )
+            el.classList.toggle('invert');
+    });
+}
+
 let splash_screen = (show = true) => {
     if(show){
-        document.querySelectorAll('.groups, .inputs').forEach(el => {el.classList.add('hidden');});
+        document.querySelectorAll('.groups, .timer, .question, .answer, .solution').forEach(
+            el => {el.classList.add('hidden');});
         document.querySelector('.splash').classList.remove('hidden');
         document.querySelector('.splash .btn_again').classList.remove('hidden');
     }else{
@@ -217,20 +252,26 @@ let reset = (show_splash = false) => {
     audio_timer.pause();
     audio_timer.currentTime = 0;
 
+    document.querySelectorAll('.group > div, .timer, .question, .answer, .solution').forEach(el => {
+        el.classList.add('hidden');
+    });
     document.querySelectorAll('.real_number').forEach(el => {
         el.innerHTML = '&nbsp;';
         el.style.fontSize = '190px';
         el.classList.remove('hidden');
-    });
-    document.querySelectorAll('.groups .shape, .groups .text, .groups .number, .inputs').forEach(el => {
-        el.classList.add('hidden');
     });
     document.querySelectorAll('.group .shape').forEach(el => {
         minigame.shapes.forEach(shape => {
             el.classList.remove(shape);
         });
     });
-    document.querySelectorAll('.group, .group div, .group .shape').forEach(el => {
+    document.querySelectorAll('.groups .inner_shape').forEach(el => {
+        minigame.inner_shapes.forEach(shape => {
+            el.classList.remove(shape);
+        });
+    });
+    document.querySelectorAll('.group, .group div, .group .shape, .groups .inner_shape').forEach(el => {
+        el.classList.remove('invert');
         el.classList.forEach(cl => {
             if( /^(bg_|txt_)/.test(cl) ) {
                 el.classList.remove(cl);
@@ -260,11 +301,20 @@ let start = () => {
         g.classList.add('bg_'+group.background_color);
         g.querySelector('.real_number').innerHTML = group.real_number;
         g.querySelector('.shape').classList.add(group.shape, 'bg_'+group.shape_color);
-        g.querySelector('.text').classList.add('txt_'+group.text_bg_color);
-        g.querySelector('.text').innerHTML = group.text_color+'<br>'+group.text_shape;
+        g.querySelector('.text_color').classList.add('txt_'+group.text_color_bg_color);
+        g.querySelector('.text_color').innerHTML = group.text_color;
+        g.querySelector('.text_shape').classList.add('txt_'+group.text_shape_bg_color);
+        g.querySelector('.text_shape').innerHTML = group.text_shape;
+        g.querySelector('.inner_shape').classList.add(group.inner_shape, 'bg_'+group.inner_shape_color);
         g.querySelector('.number').classList.add('txt_'+group.number_color);
         g.querySelector('.number').innerHTML = group.impostor_number;
     });
+
+    if( document.querySelector('#option1').checked === true )
+        invertText();
+
+    if( document.querySelector('#option3').checked === true )
+        document.querySelector('.question').classList.remove('hidden');
 
     document.querySelector('.quiz1').innerHTML = data.quiz1.type.text + ' ('+data['real_numbers'][data.quiz1.pos]+')';
     document.querySelector('.quiz2').innerHTML = data.quiz2.type.text + ' ('+data['real_numbers'][data.quiz2.pos]+')';
@@ -279,9 +329,16 @@ let start = () => {
         document.querySelectorAll('.real_number').forEach(el => {el.style.fontSize = '0px';});
 
         timer_numbers = sleep(2000, function(){
-            document.querySelectorAll('.real_number').forEach(el => {el.classList.add('hidden');});
-            document.querySelectorAll('.groups .shape, .groups .text, .groups .number, .inputs').forEach(
+            game_started = true;
+
+            document.querySelectorAll('.group > div, .timer, .answer').forEach(
                 el => {el.classList.remove('hidden');});
+            document.querySelectorAll('.group .real_number').forEach(el => {el.classList.add('hidden');});
+
+            if( document.querySelector('#option3').checked === true )
+                document.querySelector('.question').classList.add('hidden');
+            else
+                document.querySelector('.question').classList.remove('hidden');
 
             audio_timer.play();
 
@@ -293,6 +350,7 @@ let start = () => {
             speed *= 1000;
 
             timer_game = sleep(speed, function(){
+                game_started = false;
                 streak = 0;
                 audio_timer.pause();
                 if(mode === 'practice') {
