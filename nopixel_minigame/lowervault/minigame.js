@@ -375,8 +375,8 @@ let splash = () => {
         document.querySelector('.answer .btn_again').classList.remove('hidden');
         start();
     }else{
-        document.querySelector('#speed').value = 6;
-        document.querySelector('.speed_value').innerHTML = '6s';
+        document.querySelector('#speed').value = 5;
+        document.querySelector('.speed_value').innerHTML = '5s';
 
         splash_screen();
         document.querySelectorAll('.btn_again').forEach(el => {el.classList.add('hidden');});
