@@ -1,0 +1,143 @@
+body{
+    background-color: #15181d;
+}
+
+/**
+ MINIGAME SQUARES
+ */
+.streaks {
+    display: block;
+    margin: 60px auto 40px;
+    text-align: center;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    width: -moz-fit-content;
+    width: fit-content;
+    background-color: #028000;
+    padding: 12px;
+    border-radius: 18px;
+}
+.options{
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto 10px;
+}
+.option{
+    display: inline-block;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 20px;
+    background-color: #20282e;
+    padding: 10px 20px;
+    margin: 0 auto 10px;
+    border-radius: 6px;
+}
+.option.numbers input,
+.option.speed input{
+    vertical-align: text-top;
+}
+.numbers_value,
+.speed_value{
+    display: inline-block;
+    width: 18px;
+    text-align: right;
+}
+.splash{
+    display: inline-block;
+    width: 100%;
+    margin: 245px auto;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+.splash .hacker{
+    font-size: 64px;
+    margin-bottom: 30px;
+}
+.splash .message{
+    font-size: 24px;
+    font-family: sans-serif;
+}
+.splash .sub_message{
+    display: block;
+    font-size: 17px;
+    margin-top: 5px;
+    font-family: sans-serif;
+}
+
+.btn_again {
+    margin: 70px auto;
+    padding: 15px 20px;
+    font-weight: bold;
+    display: block;
+    color: #ffffff;
+    background-color: #2c465e;
+    border: 1px solid #16181d;
+    cursor: pointer;
+}
+.btn_again:hover {
+    background-color: #425e79;
+}
+.groups .btn_again{
+    margin: 0 auto;
+}
+
+.minigame{
+    margin: 0 auto 20px;
+    width: 1152px;
+    min-width: 1152px;
+    max-width: 1152px;
+    height: 648px;
+    min-height: 648px;
+    max-height: 648px;
+    background-color: #20282e;
+    position: relative;
+}
+.groups{
+    position: relative;
+    user-select: none;
+}
+.group{
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    background-color: #10487f;
+    cursor: pointer;
+    text-align: center;
+    font-size: 62px;
+    font-family: sans-serif;
+    color: #ffffff;
+    line-height: 100px;
+}
+.groups.playing .group{
+    color: transparent;
+}
+.group.good{
+    background-color: #3a5c81;
+}
+.group.bad{
+    background-color: #802525;
+}
+
+.credits{
+    font-family: sans-serif;
+    text-align: center;
+    color: gray;
+}
+.credits a{
+    color: #ccc;
+}
+.credits b{
+    color: white;
+}
+
+.hidden {
+    display: none!important;
+}
