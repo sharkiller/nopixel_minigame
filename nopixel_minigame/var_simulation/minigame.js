@@ -4,7 +4,7 @@ const random = (min, max) => {
 let sleep = (ms, fn) => {return setTimeout(fn, ms)};
 
 let timer_game, order, speed;
-let numbers = 6;
+let numbers = 8;
 let streak = 0;
 let max_streak = 0;
 let game_started = false;
@@ -22,7 +22,7 @@ document.querySelector('#speed').addEventListener('input', function(ev){
 });
 
 // Resets
-document.querySelector('.splash .btn_again').addEventListener('click', function(ev) {
+document.querySelector('.splash .btn_again').addEventListener('click', function() {
     streak = 0;
     reset();
 });
@@ -33,7 +33,7 @@ const getCookieValue = (name) => (
 let getMaxStreakFromCookie = (n) => {
     let str = getCookieValue('max-'+n+'streak');
     if(str !== '') 
-        return parseInt(str);
+        return parseInt(str, 10);
     else
         return 0;
 }
@@ -41,7 +41,7 @@ let getMaxStreakFromCookie = (n) => {
 let validate = (ev) => {
     if(game_playing === false) return;
     
-    if(parseInt(ev.target.dataset.number) === order){
+    if(parseInt(ev.target.dataset.number, 10) === order){
         ev.target.classList.add('good');
         order++;
         if(order > numbers){
@@ -88,8 +88,8 @@ let reset = () => {
 let newPos = (element) => {
     let top = element.offsetTop;
     let left = element.offsetLeft;
-    let new_top = random(10,540);
-    let new_left = random(10,1045);
+    let new_top = random(10,755);
+    let new_left = random(10,1420);
     let diff_top = new_top - top;
     let diff_left = new_left - left;
     let duration = random(10,40)*100;
@@ -106,7 +106,7 @@ let newPos = (element) => {
             duration: duration,
             easing: 'linear.none'
         },
-        duration: duration+10,
+        duration: duration+50,
         onComplete() {
             if(element.offsetTop === 0 && element.offsetLeft === 0) {
                 this.pause();
@@ -130,12 +130,12 @@ let start = () => {
     for(let i=1; i<=numbers; i++){
         let group = document.createElement('div');
         group.id = 'pos'+i;
-        group.classList.add('group');
+        group.classList.add('group','bg'+random(1,9));
         group.dataset.number = i.toString();
-        group.style.top = random(10,540)+'px';
-        group.style.left = random(10,1045)+'px';
+        group.style.top = random(10,755)+'px';
+        group.style.left = random(10,1420)+'px';
         group.innerHTML = i.toString();
-        group.addEventListener('mousedown', validate);
+        group.addEventListener('pointerdown', validate);
         document.querySelector('.groups').append(group);
     }
     document.querySelectorAll('.group').forEach(el => { newPos(el) });

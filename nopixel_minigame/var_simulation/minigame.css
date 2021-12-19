@@ -1,5 +1,15 @@
 body{
     background-color: #15181d;
+    font-family: sans-serif;
+}
+
+.title{
+    text-align: center;
+    color: white;
+}
+.description{
+    text-align: center;
+    color: gray;
 }
 
 /**
@@ -7,10 +17,9 @@ body{
  */
 .streaks {
     display: block;
-    margin: 60px auto 40px;
+    margin: 40px auto;
     text-align: center;
     font-size: 30px;
-    font-family: sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -28,7 +37,6 @@ body{
 .option{
     display: inline-block;
     color: white;
-    font-family: sans-serif;
     font-weight: bold;
     text-align: center;
     width: -moz-fit-content;
@@ -52,7 +60,7 @@ body{
 .splash{
     display: inline-block;
     width: 100%;
-    margin: 245px auto;
+    margin: 352px auto;
     text-align: center;
     color: white;
     font-size: 16px;
@@ -63,13 +71,11 @@ body{
 }
 .splash .message{
     font-size: 24px;
-    font-family: sans-serif;
 }
 .splash .sub_message{
     display: block;
     font-size: 17px;
     margin-top: 5px;
-    font-family: sans-serif;
 }
 
 .btn_again {
@@ -91,12 +97,12 @@ body{
 
 .minigame{
     margin: 0 auto 20px;
-    width: 1152px;
-    min-width: 1152px;
-    max-width: 1152px;
-    height: 648px;
-    min-height: 648px;
-    max-height: 648px;
+    width: 1536px;
+    min-width: 1536px;
+    max-width: 1536px;
+    height: 865px;
+    min-height: 865px;
+    max-height: 865px;
     background-color: #20282e;
     position: relative;
 }
@@ -112,22 +118,52 @@ body{
     cursor: pointer;
     text-align: center;
     font-size: 62px;
-    font-family: sans-serif;
     color: #ffffff;
     line-height: 100px;
+    border: 1px solid white;
 }
 .groups.playing .group{
     color: transparent;
 }
+
+.group.bg1{
+    background-color: #00ffff;
+}
+.group.bg2{
+    background-color: #088f90;
+}
+.group.bg3{
+    background-color: #708fae;
+}
+.group.bg4{
+    background-color: #7392b2;
+}
+.group.bg5{
+    background-color: #6394ed;
+}
+.group.bg6{
+    background-color: #10487f;
+}
+.group.bg7{
+    background-color: #0047ab;
+}
+.group.bg8{
+    background-color: #1335a3;
+}
+.group.bg9{
+    background-color: #00018b;
+}
+
 .group.good{
     background-color: #3a5c81;
+    border: none;
 }
 .group.bad{
     background-color: #802525;
+    border: none;
 }
 
 .credits{
-    font-family: sans-serif;
     text-align: center;
     color: gray;
 }
