@@ -1,5 +1,15 @@
 body{
     background-color: #15181d;
+    font-family: sans-serif;
+}
+
+.title{
+    text-align: center;
+    color: white;
+}
+.description{
+    text-align: center;
+    color: gray;
 }
 
 /**
@@ -7,10 +17,9 @@ body{
  */
 .streaks {
     display: block;
-    margin: 60px auto 40px;
+    margin: 40px auto;
     text-align: center;
     font-size: 30px;
-    font-family: sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -29,14 +38,9 @@ body{
     text-align: center;
     margin: 0 auto 10px;
 }
-.fleeca .options,
-.paleto .options {
-    margin-top: 158px;
-}
 .option{
     display: inline-block;
     color: white;
-    font-family: sans-serif;
     font-weight: bold;
     text-align: center;
     width: -moz-fit-content;
@@ -74,7 +78,6 @@ body{
     display: inline-block;
     color: white;
     font-size: 16px;
-    font-family: sans-serif;
     font-weight: bold;
     cursor: pointer;
     height: 38px;
@@ -125,7 +128,6 @@ body{
 }
 .splash .message{
     font-size: 28px;
-    font-family: sans-serif;
     font-weight: 900;
     font-variant: small-caps;
 }
@@ -207,7 +209,6 @@ body{
     vertical-align: middle;
     font-size: 190px;
     color: white;
-    font-family: sans-serif;
     transition: font-size 2s;
 }
 .text_color,
@@ -235,7 +236,6 @@ body{
 .number {
     text-align: center;
     font-size: 82px;
-    font-family: sans-serif;
     -webkit-text-stroke: 1px black;
     text-transform: uppercase;
     line-height: 82px;
@@ -387,7 +387,6 @@ body{
 .question{
     text-align: center;
     font-size: 20px;
-    font-family: sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -398,7 +397,6 @@ body{
 .answer{
     text-align: center;
     font-size: 20px;
-    font-family: sans-serif;
     font-weight: bold;
     color: white;
     bottom: 24px;
@@ -469,7 +467,6 @@ body{
 .solution{
     text-align: center;
     font-size: 20px;
-    font-family: sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -482,7 +479,6 @@ body{
 }
 
 .credits{
-    font-family: sans-serif;
     text-align: center;
     color: gray;
 }
