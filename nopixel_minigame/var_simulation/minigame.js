@@ -1,6 +1,17 @@
 const random = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+const range = (start, end, length = end - start + 1) => {
+    return Array.from({ length }, (_, i) => start + i)
+}
+const shuffle = (arr) => {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
 let sleep = (ms, fn) => {return setTimeout(fn, ms)};
 
 let timer_game, order, speed;
@@ -127,17 +138,19 @@ let start = () => {
     game_playing = false;
     
     numbers = document.querySelector('#numbers').value;
-    for(let i=1; i<=numbers; i++){
+    let nums = range(1, numbers);
+    shuffle(nums);
+    nums.forEach(function(num){
         let group = document.createElement('div');
-        group.id = 'pos'+i;
+        group.id = 'pos'+num;
         group.classList.add('group','bg'+random(1,9));
-        group.dataset.number = i.toString();
+        group.dataset.number = num.toString();
         group.style.top = random(10,755)+'px';
         group.style.left = random(10,1420)+'px';
-        group.innerHTML = i.toString();
+        group.innerHTML = num.toString();
         group.addEventListener('pointerdown', validate);
         document.querySelector('.groups').append(group);
-    }
+    });
     document.querySelectorAll('.group').forEach(el => { newPos(el) });
     
     speed = document.querySelector('#speed').value;
