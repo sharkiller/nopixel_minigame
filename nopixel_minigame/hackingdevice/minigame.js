@@ -1,4 +1,4 @@
-let timer_start, timer_game, timer_finish, timer_time, correct_pos, to_find, codes, sets, timerStart;
+let timer_start, timer_game, timer_finish, timer_time, timer_hide, correct_pos, to_find, codes, sets, timerStart;
 let game_started = false;
 let streak = 0;
 let max_streak = 0;
@@ -61,6 +61,12 @@ const randomSetChar = () => {
     return str.charAt(random(0,str.length));
 }
 
+// Options
+document.querySelector('#timeout').addEventListener('input', function(ev){
+    document.querySelector('.timeout_value').innerHTML = ev.target.value + 's';
+    streak = 0;
+    reset();
+});
 // Resets
 document.querySelector('.btn_again').addEventListener('click', function(){
     streak = 0;
@@ -195,6 +201,7 @@ function reset(restart = true){
     clearTimeout(timer_start);
     clearTimeout(timer_game);
     clearTimeout(timer_finish);
+    clearTimeout(timer_hide);
 
     if(restart){
         document.querySelector('.minigame .hack').classList.add('hidden');
@@ -265,9 +272,18 @@ function start(){
         timer_game = setInterval(moveCodes, 1500);
 
         game_started = true;
-        startTimer();
 
-        timer_finish = sleep(20000, function(){
+        let timeout = document.querySelector('#timeout').value;
+        startTimer(timeout);
+        timeout *= 1000;
+        
+        if( document.querySelector('#hide_chars').checked && random(1,4) === 1 ){
+            timer_hide = setInterval(function(){
+                document.querySelector('.minigame .hack .find').innerHTML = '';
+            }, 3500);
+        }
+        
+        timer_finish = sleep(timeout, function(){
             game_started = false;
             streak = 0;
             check();
@@ -275,11 +291,11 @@ function start(){
     });
 }
 
-function startTimer(){
+function startTimer(timeout){
     timerStart = new Date();
-    timer_time = setInterval(timer,1);
+    timer_time = setInterval(timer,1, timeout);
 }
-function timer(){
+function timer(timeout){
     let timerNow = new Date();
     let timerDiff = new Date();
     timerDiff.setTime(timerNow - timerStart);
@@ -290,7 +306,7 @@ function timer(){
     let ms2 = (999-ms);
     if (ms2 > 99) ms2 = Math.floor(ms2/10);
     if (ms2 < 10) ms2 = "0"+ms2;
-    document.querySelector('.hack .timer').innerHTML = (19-sec)+"."+ms2;
+    document.querySelector('.hack .timer').innerHTML = (timeout-1-sec)+"."+ms2;
 }
 function stopTimer(){
     clearInterval(timer_time);

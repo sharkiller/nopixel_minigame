@@ -8,10 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.4">
     <link rel="icon" type="image/png" href="favicon.ico" sizes="32x32" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/solid.css" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="minigame.css?v=20210808">
-    <script defer src="minigame.js?v=20210808"></script>
+    <link rel="stylesheet" type="text/css" href="minigame.css?v=20211231">
+    <script defer src="minigame.js?v=20211231"></script>
+    <script> // Microsoft Bing
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/9twm8m8r4i?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "9twm8m8r4i");
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52394643-1"></script>
-    <script>
+    <script> // Google Analytics
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -19,6 +26,12 @@
     </script>
 </head>
 <body>
+    <h1 class="title">NoPixel Hacking Device Minigame</h1>
+    <h3 class="description">
+        Play the NoPixel Security System Hacking Device Minigame to test your visual finder speed.
+        <br><br>
+        <u>How to play:</u> Find the group of characters highlighted at the top on the character soup of the bottom.
+    </h3>
     <div class="streaks">
         STREAK: <span class="streak">0</span> <span class="fa">&#xf21b;</span> MAX STREAK: <span class="max_streak">0</span>
         <br>TIME: <span class="time">0.000</span> <span class="fa">&#xf2f2;</span> BEST TIME: <span class="best_time">0.000</span>
@@ -52,6 +65,16 @@
         </div>
         <div class="option setting">
             <label><input name="show_type" value="2" type="radio">Only Mirrored</label>
+        </div>
+    </div>
+    <div class="options settings">
+        <div class="option setting timeout">
+            <label for="timeout">Timeout:</label>
+            <input id="timeout" type="range" value="15" min="5" max="30" step="5" autocomplete="off">
+            <div class="timeout_value">15s</div>
+        </div>
+        <div class="option setting">
+            <label><input id="hide_chars" value="1" type="checkbox" checked="checked">Randomly hides characters</label>
         </div>
     </div>
     <div class="minigame">

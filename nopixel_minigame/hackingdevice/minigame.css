@@ -1,5 +1,15 @@
 body{
     background-color: #15181d;
+    font-family: sans-serif;
+}
+
+.title{
+    text-align: center;
+    color: white;
+}
+.description{
+    text-align: center;
+    color: gray;
 }
 
 /**
@@ -8,10 +18,9 @@ body{
 
 .streaks {
     display: block;
-    margin: 80px auto 40px;
+    margin: 40px auto;
     text-align: center;
     font-size: 30px;
-    font-family: sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
@@ -39,7 +48,6 @@ body{
 .option{
     display: inline-block;
     color: white;
-    font-family: sans-serif;
     font-weight: bold;
     text-align: center;
     width: -moz-fit-content;
@@ -64,8 +72,20 @@ body{
     vertical-align: -2px;
     cursor: pointer;
 }
+.option.timeout label{
+    padding: 9px;
+}
+.option.timeout input{
+    vertical-align: text-top;
+}
+.timeout_value{
+    font-size: 12px;
+    display: inline-block;
+    width: 18px;
+    text-align: right;
+    padding: 9px 12px 9px 5px;
+}
 .minigame{
-    font-family: sans-serif;
     margin: 0 auto 20px;
     width: 540px;
     min-width: 540px;
@@ -76,7 +96,6 @@ body{
 .splash{
     display: inline-block;
     width: 100%;
-    font-family: sans-serif;
     text-align: center;
     color: white;
     font-size: 16px;
@@ -134,7 +153,6 @@ body{
     display: none;
 }
 .restart{
-    font-family: sans-serif;
     text-align: center;
 }
 .btn_again {
@@ -142,7 +160,6 @@ body{
     font-weight: bold;
 }
 .credits{
-    font-family: sans-serif;
     text-align: center;
     color: gray;
     margin-top: 40px;
