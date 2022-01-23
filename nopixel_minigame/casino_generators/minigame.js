@@ -82,8 +82,6 @@ function listener(ev){
         }
     }
 
-    ev.target.removeEventListener('mousedown', listener);
-
     check();
 }
 
