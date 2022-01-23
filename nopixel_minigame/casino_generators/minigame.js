@@ -1,4 +1,4 @@
-let timer_start, timer_finish, timer_time, good_positions, best_route, blinking_pos, last_pos, wrong, speed, timerStart;
+let timer_start, timer_finish, timer_hide, timer_time, good_positions, best_route, blinking_pos, last_pos, wrong, speed, timerStart;
 let game_started = false;
 let streak = 0;
 let max_streak = 0;
@@ -169,6 +169,7 @@ function reset(){
 
     resetTimer();
     clearTimeout(timer_start);
+    clearTimeout(timer_hide);
     clearTimeout(timer_finish);
 
     max_streak = getMaxStreakFromCookie();
@@ -229,6 +230,9 @@ function start(){
         document.querySelector('.groups').classList.remove('hidden');
         
         game_started = true;
+        timer_hide = sleep(6000, function(){
+            document.querySelector('.groups').classList.add('transparent');
+        });
 
         startTimer();
         speed = document.querySelector('#speed').value;
