@@ -5,11 +5,11 @@ let max_streak = 0;
 let best_time = 99.999;
 let pieces = [
     '&#xf443;', // 1 = Pawn
-    '&#xf441;', //   = Knight   (Unconfirmed 2)
+    '&#xf441;', // 2 = Knight
     '&#xf43a;', // 3 = Bishop
-    '&#xf447;', //   = Rook     (Unconfirmed 4)
-    '&#xf43f;', //   = King     (Unconfirmed 5) (Not 4)
-    '&#xf445;'  // 6 = Queen
+    '&#xf447;', // 4 = Rook
+    '&#xf445;', // 5 = Queen
+    '&#xf43f;'  // 6 = King
 ]
 
 const getCookieValue = (name) => (
