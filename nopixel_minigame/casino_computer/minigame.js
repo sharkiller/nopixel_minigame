@@ -74,7 +74,7 @@ function listener(ev){
             ev.target.classList.add('bad');
         }
     }else{
-        let pos_jumps = parseInt(document.querySelectorAll('.group')[last_pos].innerText, 10);
+        let pos_jumps = parseInt(document.querySelectorAll('.group')[last_pos].dataset.value, 10);
         let maxV = maxVertical(last_pos);
         let maxH = maxHorizontal(last_pos);
         
