@@ -15,7 +15,7 @@ const shuffle = (arr) => {
 let sleep = (ms, fn) => {return setTimeout(fn, ms)};
 
 let timer_game, order, speed;
-let numbers = 8;
+let numbers = 10;
 let streak = 0;
 let max_streak = 0;
 let game_started = false;
