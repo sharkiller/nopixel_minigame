@@ -155,6 +155,17 @@ body{
 .credits b{
     color: white;
 }
+.credits .donate{
+    margin: 20px 0;
+}
+.credits .coin{
+    font-weight: bold;
+    color: white;
+}
+.credits .wallet{
+    font-family: monospace;
+    font-size: 20px;
+}
 
 .hidden {
     display: none!important;
