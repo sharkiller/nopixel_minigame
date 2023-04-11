@@ -81,11 +81,13 @@ document.addEventListener("keydown", function(ev) {
         switch(key_pressed){
             case 'w':
             case 'ArrowUp':
+                ev.preventDefault();
                 current_pos -= 10;
                 if(current_pos < 0) current_pos += 80;
                 break;
             case 's':
             case 'ArrowDown':
+                ev.preventDefault();
                 current_pos += 10;
                 current_pos %= 80;
                 break;
