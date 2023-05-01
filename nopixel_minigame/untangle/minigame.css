@@ -81,7 +81,7 @@ body{
     margin: 0 auto 10px;
     border-radius: 6px;
 }
-.option.grid input,
+.option.dots input,
 .option.speed input{
     vertical-align: text-top;
 }
@@ -90,7 +90,7 @@ body{
     width: 18px;
     text-align: right;
 }
-.grid_value{
+.dots_value{
     display: inline-block;
     width: 40px;
     text-align: center;

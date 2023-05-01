@@ -1,4 +1,4 @@
-let timer_start, timer_finish, timer_hide, timer_time, good_positions, best_route, blinking_pos, last_pos, wrong, speed, timerStart;
+let timer_start, timer_finish, timer_hide, timer_time, wrong, speed, timerStart;
 let game_started = false;
 let streak = 0;
 let max_streak = 0;
@@ -6,14 +6,15 @@ let best_time = 99.999;
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
 
+const random = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
 // Set the canvas size
 canvas.width = 500;
 canvas.height = 500;
 
-const amountOfDots = 5;
-const minLinks = 2;
-const maxLinks = amountOfDots - 1;
+let amountOfDots = 7;
 let selectedDot = null; // Keeps track of the selected dot, if any.
 let offset = { x: 0, y: 0 }; // Keeps track of the offset between the mouse position and the selected dot.
 
@@ -24,55 +25,65 @@ let intersections = [];
 
 let showIntersections = true;
 
-function createDots () {
-    dots = Array.from({ length: amountOfDots }, () => ({
-    x: Math.floor(Math.random() * canvas.width),
-    y: Math.floor(Math.random() * canvas.height),
-  }));
-}
+function createDots() {
+    let radius = 200;
+    let centerX = 250;
+    let centerY = 250;
+    dots = [];
 
-function createLines () {
-    // Generate random lines connecting the dots
-    for (let i = 0; i < amountOfDots; i++) {
-        const dot1 = dots[i];
-        let connections = 0;
-        for (let j = i + 1; j < amountOfDots; j++) {
-            // Randomly decide whether to connect the dots
-            if (Math.random() < 0.5 && connections < maxLinks) {
-                if (!lines.some(item => (item.start == i)
-                    && (item.end == j)) && !lines.some(item => (item.start == j)
-                    && (item.end == i))) {
-                        lines.push({ start: i, end: j });
-                }
-                connections++;
-            }
-        }
-    
-        // Ensure that each dot is connected at least twice and at most four times
-        
-        while ((connections < minLinks || connections > maxLinks)) {
-            const secondIndex = Math.floor(Math.random() * amountOfDots);
-            const dot2 = dots[secondIndex];
-            if (dot2 !== dot1) {
-                if (connections < maxLinks || Math.random() < 0.5) {
-                    if (!lines.some(item => (item.start == i)
-                        && (item.end == secondIndex)) && !lines.some(item => (item.start == secondIndex)
-                        && (item.end == i))) {
-                            lines.push({ start: i, end: secondIndex });
-                    }
-                    connections++;
-                }
-            }
-        }
-    }
-
-    // No correct answer if all dots are linked to all dots, so removing one line makes it possible to solve
-    if ((lines.length * 2) == (dots.length * maxLinks)) {
-        lines.pop();
+    for(let i = 0; i < amountOfDots; i++) {
+        dots.push({
+            x: Math.floor(centerX + radius * Math.cos(2 * Math.PI * i / amountOfDots)),
+            y: Math.floor(centerY + radius * Math.sin(2 * Math.PI * i / amountOfDots)),
+        });
     }
 }
 
-function drawDots () {
+function createLines() {
+    lines = [];
+    let limit = new Array(dots.length).fill(0);
+    let max_connects = 4;
+    let finish = false;
+    let tries = 0;
+    while (finish === false) {
+        tries += 1;
+
+        if(tries > 100) {
+            limit = new Array(dots.length).fill(0);
+            lines = [];
+            tries = 0;
+        }
+
+        let from = random(0, dots.length);
+        let to = random(0, dots.length);
+        if (from === to) {
+            continue;
+        }
+        if(limit[from] === max_connects || limit[to] === max_connects){
+            continue;
+        }
+        if(lines.filter((el) => el.start === from && el.end === to).length > 0){
+            continue;
+        }
+        if(lines.filter((el) => el.start === to && el.end === from).length > 0){
+            continue;
+        }
+        limit[from] += 1;
+        limit[to] += 1;
+
+        lines.push({
+            start: from,
+            end: to
+        });
+
+        finish = true;
+        limit.forEach(num => {
+            if(num < 2) finish = false;
+        });
+    }
+}
+
+function drawDots() {
     ctx.fillStyle = 'green';
     dots.forEach(dot => {
         ctx.beginPath();
@@ -81,17 +92,15 @@ function drawDots () {
     });
 }
 
-const maxDistance = 100; // maximum distance between two dots to connect with a line
 function redraw() {
     // Clear the canvas.
-    ctx.clearRect(0, 0, canvas.width, canvas.height);  
-  
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Redraw the lines.
     drawLines();
     // Redraw the dots.
     drawDots();
 }
-function getLineDot (index) {
+function getLineDot(index) {
     return dots[index];
 }
 
@@ -99,16 +108,15 @@ function detectIntersects() {
     intersections = [];
     lines.forEach(line => line.intersecting = null);
     // Detect intersecting lines
-    for (var i = 0; i < lines.length; i++) {
-        for (var j = i + 1; j < lines.length; j++) {
-            var line1 = lines[i];
-            var line2 = lines[j];
-        
+    for (let i = 0; i < lines.length; i++) {
+        for (let j = i + 1; j < lines.length; j++) {
+            const line1 = lines[i];
+            const line2 = lines[j];
+
             // Calculate intersection point (if it exists)
-            var intersection = getIntersection(getLineDot(line1.start).x, getLineDot(line1.start).y, getLineDot(line1.end).x, getLineDot(line1.end).y, getLineDot(line2.start).x, getLineDot(line2.start).y, getLineDot(line2.end).x, getLineDot(line2.end).y);
+            let intersection = getIntersection(getLineDot(line1.start).x, getLineDot(line1.start).y, getLineDot(line1.end).x, getLineDot(line1.end).y, getLineDot(line2.start).x, getLineDot(line2.start).y, getLineDot(line2.end).x, getLineDot(line2.end).y);
             const linepoints = [getLineDot(line1.start), getLineDot(line1.end), getLineDot(line2.start), getLineDot(line2.end)];
-            if (intersection != null && linepoints.some(item => item.x === intersection.x && item.y === intersection.y))
-            {
+            if (intersection != null && linepoints.some(item => item.x === intersection.x && item.y === intersection.y)) {
                 intersection = null;
             }
             if (intersection) {
@@ -152,15 +160,15 @@ function drawLines () {
 
 // Helper function to calculate intersection point of two lines
 function getIntersection(x1, y1, x2, y2, x3, y3, x4, y4) {
-    var det1 = (x1 - x2) * (y3 - y4);
-    var det2 = (y1 - y2) * (x3 - x4);
-    var det = det1 - det2;
+    const det1 = (x1 - x2) * (y3 - y4);
+    const det2 = (y1 - y2) * (x3 - x4);
+    const det = det1 - det2;
     if (det === 0) {
       // Lines are parallel
       return null;
     }
-    var x = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / det;
-    var y = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / det;
+    const x = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / det;
+    const y = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / det;
     if (x < Math.min(x1, x2) || x > Math.max(x1, x2) || y < Math.min(y1, y2) || y > Math.max(y1, y2)) {
         return null;
     }
@@ -199,18 +207,23 @@ function addListeners(){
         streak = 0;
         reset();
     });
-    // Options
-    document.querySelector('#showIntersections').addEventListener('input', function(ev){
+    document.querySelector('#dots').addEventListener('input', function(ev){
+        document.querySelector('.dots_value').innerHTML = ev.target.value;
+        amountOfDots = ev.target.value;
         streak = 0;
         reset();
     });
-    
+    // Options
+    document.querySelector('#showIntersections').addEventListener('input', function(){
+        streak = 0;
+        reset();
+    });
     // Resets
     document.querySelector('.btn_again').addEventListener('click', function(){
         streak = 0;
         reset();
     });
-    canvas.addEventListener('mousedown', e => {
+    canvas.addEventListener('mousedown', (e) => {
         // Loop through all the dots to see if the mouse is inside one of them.
         for (let i = 0; i < dots.length; i++) {
           const dot = dots[i];
@@ -226,7 +239,7 @@ function addListeners(){
         }
     });
       
-    canvas.addEventListener('mousemove', e => {
+    canvas.addEventListener('mousemove', (e) => {
         // If a dot is currently selected, move it to the new mouse position.
         if (selectedDot !== null) {
           selectedDot.x = e.offsetX - offset.x;
@@ -235,7 +248,7 @@ function addListeners(){
         }
     });
       
-    canvas.addEventListener('mouseup', e => {
+    canvas.addEventListener('mouseup', () => {
         // Deselect the dot when the mouse button is released.
         selectedDot = null;
         check();
