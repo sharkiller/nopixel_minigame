@@ -78,6 +78,7 @@ document.addEventListener("keydown", function(ev) {
     let valid_keys = ['a','w','s','d','ArrowUp','ArrowDown','ArrowRight','ArrowLeft','Enter'];
 
     if(game_started && valid_keys.includes(key_pressed) ){
+        ev.preventDefault();
         switch(key_pressed){
             case 'w':
             case 'ArrowUp':

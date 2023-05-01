@@ -120,6 +120,7 @@ body{
     text-align: center;
     color: white;
     font-size: 16px;
+    user-select: none;
 }
 .splash .hacker{
     font-size: 65px;
