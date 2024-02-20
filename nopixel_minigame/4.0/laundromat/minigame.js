@@ -179,7 +179,7 @@ function addSections(radius){
     let sectionsGroup = new Konva.Group({id: 'section-'+radius, x: 270, y: 270});
 
     for(let i = 0; i < 12; i++) {
-        if(colors[radius][i][1] && Math.random() > 0.2) {
+        if(colors[radius][i][1] && Math.random() > 0.3) {
             sectionsGroup.add(new Konva.Arc({
                 fill: colors[radius][i][0],
                 innerRadius: radius + 15,
