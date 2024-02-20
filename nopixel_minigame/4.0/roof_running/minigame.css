@@ -134,6 +134,30 @@ body{
     text-align: center;
     line-height: 60px;
 }
+.group5{
+    width: 100px;
+    height: 100px;
+}
+.group6{
+    width: 82px;
+    height: 82px;
+}
+.group7{
+    width: 69px;
+    height: 69px;
+}
+.group8{
+    width: 59px;
+    height: 59px;
+}
+.group9{
+    width: 52px;
+    height: 52px;
+}
+.group10{
+    width: 46px;
+    height: 46px;
+}
 .group.green{
     background: linear-gradient(180deg, #91bc57 0%, #6b8d40 100%);
     border: 2px #85a957 solid;

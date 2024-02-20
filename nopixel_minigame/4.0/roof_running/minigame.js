@@ -4,6 +4,8 @@ let streak = 0;
 let max_streak = 0;
 let best_time = 99.999;
 
+let mode = 5;
+
 const getCookieValue = (name) => (
     document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
 )
@@ -26,6 +28,13 @@ best_time = getBestTimeFromCookie();
 
 const sleep = (ms, fn) => {return setTimeout(fn, ms)};
 
+// Option
+document.querySelector('#grid').addEventListener('input', function(ev){
+    document.querySelector('.grid_value').innerHTML = ev.target.value + 'x' + ev.target.value;
+    mode = parseInt(ev.target.value, 10);
+    streak = 0;
+    reset();
+});
 // Resets
 document.querySelector('.btn_again').addEventListener('click', function(){
     streak = 0;
@@ -35,21 +44,21 @@ document.querySelector('.btn_again').addEventListener('click', function(){
 function isValid(type, pos, color){
     switch (type) {
         case 'left':
-            if(pos%7 === 0) return false;
-            pos = pos-1;
+            if(pos%mode === 0) return false;
+            pos = pos - 1;
             if(pos < 0) return false;
             break;
         case 'right':
-            pos = pos+1;
-            if(pos > 48 || pos%7 === 0) return false;
+            pos = pos + 1;
+            if(pos >= (mode**2) || pos%mode === 0) return false;
             break;
         case 'top':
-            pos = pos-7;
+            pos = pos - mode;
             if(pos < 0) return false;
             break;
         case 'bottom':
-            pos = pos+7;
-            if(pos > 48) return false;
+            pos = pos + mode;
+            if(pos >= (mode**2)) return false;
             break;
     }
     if(pos_checked.includes(pos)) return false;
@@ -75,9 +84,9 @@ function checkAdjacent(pos, color){
 function deleteChecked(){
 
     const groups = document.querySelectorAll('.group');
-    for(let i=48; i >= 7; i--){
+    for(let i= (mode**2)-1; i >= mode; i--){
         if( groups[i].dataset.remove === '1'){
-            let pos = i-7;
+            let pos = i - mode;
             while(pos >= 0){
                 if(groups[pos].dataset.remove !== '1'){
                     // Replace
@@ -92,7 +101,7 @@ function deleteChecked(){
                     delete groups[pos].dataset.color;
                     pos=0;
                 }
-                pos=pos-7;
+                pos=pos - mode;
             }
         }
     }
@@ -100,19 +109,14 @@ function deleteChecked(){
 
 function joinColumns(){
     const groups = document.querySelectorAll('.group');
-    for(let i=42; i <= 47; i++){
+    for(let i= (mode**2)-mode; i <= (mode**2)-2; i++){
         if( groups[i].dataset.remove === '1'){
-            console.log('column-empty', groups[i]);
             let pos = i+1;
             let maxH = maxHorizontal(i);
-            console.log('maxH', maxH);
             while(pos-i <= maxH){
-                console.log('pos', pos);
                 if(groups[pos].dataset.remove !== '1'){
                     let pos_diff = pos-i;
-                    console.log('column-found', pos_diff, groups[pos]);
-                    for(let vpos=pos; vpos>=0; vpos=vpos-7){
-                        console.log('row-found', groups[vpos]);
+                    for(let vpos=pos; vpos>=0; vpos=vpos - mode){
                         if(groups[vpos].dataset.remove !== '1'){
                             // Replace
                             delete groups[vpos-pos_diff].dataset.remove;
@@ -126,7 +130,7 @@ function joinColumns(){
                             delete groups[vpos].dataset.color;
                         }
                     }
-                    pos=48;
+                    pos=(mode**2);
                 }
                 pos++;
             }
@@ -158,7 +162,7 @@ function addListeners(){
 }
 
 function check(){
-    if(document.querySelectorAll('.group.removed').length === 49){
+    if(document.querySelectorAll('.group.removed').length === (mode**2)){
         stopTimer();
         streak++;
         if(streak > max_streak){
@@ -175,8 +179,8 @@ function check(){
 }
 
 function maxHorizontal(pos){
-    let max = (pos+1) % 7;
-    if(max > 0) return 7-max;
+    let max = (pos+1) % mode;
+    if(max > 0) return mode - max;
         else return 0;
 }
 
@@ -202,9 +206,9 @@ function start(){
 
     let div = document.createElement('div');
     let colors = ['red', 'green', 'blue'];
-    div.classList.add('group');
+    div.classList.add('group','group'+mode);
     const groups = document.querySelector('.groups');
-    for(let i=0; i < 49; i++){
+    for(let i=0; i < (mode**2); i++){ 
         let group = div.cloneNode();
         let randomColor = colors[Math.floor(Math.random() * colors.length)];
         group.dataset.position = i.toString();
