@@ -1,4 +1,4 @@
-let timer_start, timer_finish, timer_hide, timer_time, wrong, speed, timerStart;
+let timer_start, timer_finish, timer_time, speed, timerStart;
 let game_started = false;
 let streak = 0;
 let max_streak = 0;
@@ -49,7 +49,6 @@ function addListeners(){
         streak = 0;
         reset();
     });
-    
 }
 
 function fillColor(color){
@@ -65,6 +64,7 @@ function fillColor(color){
 
 function check(timeout){
     if (timeout) {
+        fillColor('rgba(234,6,6,0.8)');
         streak = 0;
         stopTimer();
     }else if(currentCirclePos[45 * currentCircle] === 0){
@@ -100,7 +100,6 @@ function reset(){
 
     resetTimer();
     clearTimeout(timer_start);
-    clearTimeout(timer_hide);
     clearTimeout(timer_finish);
 
     max_streak = getMaxStreakFromCookie();
@@ -161,9 +160,9 @@ function addDots(radius){
 
     for(let i = 0; i < 12; i++) {
         let randomColor = cols[Math.floor(Math.random() * cols.length)];
-        colors[radius][i] = randomColor;
+        colors[radius][i] = [randomColor, Math.random() > 0.2];
         
-        if(Math.random() > 0.2) {
+        if( colors[radius][i][1] ) {
             dotsGroup.add(new Konva.Circle({
                 x: Math.floor(radius * Math.cos(2 * Math.PI * i / 12)),
                 y: Math.floor(radius * Math.sin(2 * Math.PI * i / 12)),
@@ -180,11 +179,9 @@ function addSections(radius){
     let sectionsGroup = new Konva.Group({id: 'section-'+radius, x: 270, y: 270});
 
     for(let i = 0; i < 12; i++) {
-        let randomColor = colors[radius][i];
-
-        if(Math.random() > 0.4) {
+        if(colors[radius][i][1] && Math.random() > 0.2) {
             sectionsGroup.add(new Konva.Arc({
-                fill: randomColor,
+                fill: colors[radius][i][0],
                 innerRadius: radius + 15,
                 outerRadius: radius + 20,
                 angle: 30,
